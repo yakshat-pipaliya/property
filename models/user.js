@@ -3,19 +3,19 @@ const Schema = mongoose.Schema;
 const Constants = require('../Message/message');
 
 const userSchema = new Schema({
-    email: {
+    Email: {
         type: String,
         trim: true,
         unique: [true, Constants.EMAIL_ALREADY_EXISTS], 
         required: [true, Constants.EMAIL_REQUIRED], 
     },
-    phone: {
+    Phone: {
         type: String,
         trim: true,
         unique: [true, Constants.PHONE_ALREADY_EXISTS],
         required: [true, Constants.PHONE_REQUIRED], 
     },
-    password: {
+    Password: {
         type: String,
         required: [true, Constants.PASSWORD_REQUIRED],
     },

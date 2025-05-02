@@ -5,8 +5,8 @@ const Constants = require('../Message/message');
 
 exports.createUser = async (req, res) => {
     try {
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
         const { Email, Phone, Password } = req.body;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
         if (!emailRegex.test(Email)) {
             return res.status(400).json({
@@ -41,6 +41,7 @@ exports.createUser = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(Password, 10);
         const createdata = await UM.create({ ...req.body, Password: hashedPassword });
+        
 
         res.status(201).json({
             status: Constants.SUCCESS,

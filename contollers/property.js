@@ -1,13 +1,6 @@
 const PM = require('../models/property');
-const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 const Constants = require('../Message/message');
-
-cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.CLOUD_API_KEY,
-    api_secret: process.env.h2Lodsh0ywYiYsFSDGdAYXA9jAM
-});
 
 exports.createData = async (req, res) => {
     try {
@@ -18,13 +11,7 @@ exports.createData = async (req, res) => {
         }
 
         if (req.files && req.files.length > 0) {
-            const uploadPromises = req.files.map(async (file) => {
-                const result = await cloudinary.uploader.upload(file.path, { folder: 'properties' });
-                fs.unlinkSync(file.path);
-                return result.secure_url;
-            });
-
-            const imageUrls = await Promise.all(uploadPromises);
+            const imageUrls = req.files.map((file) => file.path);
             property.Image = imageUrls;
         }
 
@@ -43,6 +30,7 @@ exports.createData = async (req, res) => {
         });
     }
 };
+
 
 exports.getData = async (req, res) => {
     try {

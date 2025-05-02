@@ -48,6 +48,8 @@ class Constants {
   static PROPERTY_ANALYST_DELETED = "Property analyst deleted successfully.";
   static PROPERTY_ANALYST_DATA_REQUIRED = "Property analyst data is required.";
 
+  static AUTH_TOKEN_MISSING = "Authorization token missing.";
+  static INVALID_TOKEN = "Invalid token.";
 
 }
 

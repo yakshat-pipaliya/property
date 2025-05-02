@@ -113,14 +113,8 @@ exports.updateData = async (req, res) => {
         }
 
         if (req.files && req.files.length > 0) {
-            const uploadPromises = req.files.map(async (file) => {
-                const result = await cloudinary.uploader.upload(file.path, { folder: 'properties' });
-                fs.unlinkSync(file.path);
-                return result.secure_url;
-            });
-
-            const imageUrls = await Promise.all(uploadPromises);
-            updatedProperty.Image = imageUrls;
+            const imageUrls = req.files.map((file) => file.path);
+            propertyUpdates.Image = imageUrls;
         }
 
         const property = await PM.findByIdAndUpdate(req.params.id, updatedProperty, { new: true });

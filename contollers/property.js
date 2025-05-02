@@ -114,7 +114,7 @@ exports.updateData = async (req, res) => {
         }
         if (req.files && req.files.length > 0) {
             const imageUrls = req.files.map((file) => `/property/${file.filename}`);
-            propertyUpdates.Image = imageUrls;
+            updatedProperty.Image = imageUrls;
         }
 
         const property = await PM.findByIdAndUpdate(req.params.id, updatedProperty, { new: true });

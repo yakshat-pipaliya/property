@@ -11,7 +11,7 @@ exports.createData = async (req, res) => {
         }
 
         if (req.files && req.files.length > 0) {
-            const imageUrls = req.files.map((file) => file.path);
+            const imageUrls = req.files.map((file) => `/property/${file.filename}`);
             property.Image = imageUrls;
         }
 
@@ -30,6 +30,7 @@ exports.createData = async (req, res) => {
         });
     }
 };
+
 
 
 exports.getData = async (req, res) => {
@@ -111,9 +112,8 @@ exports.updateData = async (req, res) => {
         if (!updatedProperty) {
             return res.status(400).json({ error: Constants.PROPERTY_DATA_REQUIRED });
         }
-
         if (req.files && req.files.length > 0) {
-            const imageUrls = req.files.map((file) => file.path);
+            const imageUrls = req.files.map((file) => `/property/${file.filename}`);
             propertyUpdates.Image = imageUrls;
         }
 

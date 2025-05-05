@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cloudinary = require('cloudinary').v2;
 require('dotenv').config();
+const { swaggerUi, specs } = require('./Swagger');
+const cors = require('cors');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -41,6 +44,8 @@ app.use('/',userRouter)
 app.use('/property',propertyRouter)
 app.use('/analyst',property_analystRouter)
 app.use('/admin',adminRouter)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+app.use(cors());
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

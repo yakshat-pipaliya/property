@@ -17,10 +17,10 @@ const UC = require('../contollers/user');
  *             properties:
  *               Email:
  *                 type: string
- *                 example: "YaaaaP@gmail.com"
+ *                 example: "YP@gmail.com"
  *               Phone:
  *                 type: string
- *                 example: "+91 6414893210"
+ *                 example: "+91 6424893210"
  *               Password:
  *                 type: string
  *                 example: "Abcd@123"
@@ -51,7 +51,7 @@ const UC = require('../contollers/user');
  *               type: array
  *               items:
  *                 type: object
- *                 properties:
+ *                 properties:  
  *                   id:
  *                     type: string
  *                     example: "1"
@@ -67,6 +67,71 @@ const UC = require('../contollers/user');
  *       500:
  *         description: Internal server error
  */
+/**
+ * @swagger
+ * /users/{id}:
+ *   patch:
+ *     summary: Update a user
+ *     description: Update user information by providing a valid user ID and fields to update.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the user to update
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               Email:
+ *                 type: string
+ *                 example: "YP@gmail.com"
+ *               Phone:
+ *                 type: string
+ *                 example: "+91 9876543210"
+ *               Password:
+ *                 type: string
+ *                 example: "Wxyz@123"
+ *               role:
+ *                 type: string
+ *                 enum: [admin, user]
+ *                 example: "user"
+ *     responses:
+ *       200:
+ *         description: User updated successfully
+ *       400:
+ *         description: Invalid input data
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
+/**
+ * @swagger
+ * /users/{id}:
+ *   delete:
+ *     summary: Delete a user
+ *     description: Delete a user by providing a valid user ID.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the user to delete
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: User deleted successfully
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
+
 router.post('/', UC.createUser);
 
 router.post('/login', UC.loginUser);
